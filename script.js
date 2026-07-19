@@ -60,12 +60,9 @@ function safeDivide(numerator, denominator) {
 }
 
 function showEmptyResult() {
-  outputs.ctr.textContent = '—';
-  outputs.cpc.textContent = '—';
-  outputs.conversion.textContent = '—';
-  outputs.cpl.textContent = '—';
-  outputs.romi.textContent = '—';
-  outputs.roi.textContent = '—';
+  Object.values(outputs).forEach((output) => {
+    output.textContent = '—';
+  });
 }
 
 function clearMessage() {
@@ -96,6 +93,12 @@ function showMessage(text, type = 'error') {
   message.className = `message ${type}`;
 }
 
+function showResults(results) {
+  Object.entries(results).forEach(([metric, value]) => {
+    outputs[metric].textContent = value;
+  });
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -123,12 +126,7 @@ form.addEventListener('submit', (event) => {
     leads: leads.value,
   });
 
-  outputs.ctr.textContent = results.ctr;
-  outputs.cpc.textContent = results.cpc;
-  outputs.conversion.textContent = results.conversion;
-  outputs.cpl.textContent = results.cpl;
-  outputs.romi.textContent = results.romi;
-  outputs.roi.textContent = results.roi;
+  showResults(results);
   showMessage('Расчет выполнен.', 'success');
 });
 
