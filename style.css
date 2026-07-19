@@ -59,6 +59,13 @@ h1 {
   font-weight: 700;
 }
 
+.field-hint {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
 input {
   width: 100%;
   border: 1px solid #cbd5e1;
@@ -76,8 +83,15 @@ input:focus {
   outline: none;
 }
 
-button {
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 22px;
+}
+
+button {
+  margin-top: 0;
   border: 0;
   border-radius: 14px;
   padding: 15px 24px;
@@ -92,6 +106,15 @@ button {
 button:hover {
   background: #1d4ed8;
   transform: translateY(-1px);
+}
+
+.button-secondary {
+  color: #2563eb;
+  background: #eaf1ff;
+}
+
+.button-secondary:hover {
+  background: #dbeafe;
 }
 
 .message {

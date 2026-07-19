@@ -35,12 +35,16 @@ function parseField(input, label) {
   return { value };
 }
 
+function formatNumber(value, options = {}) {
+  return new Intl.NumberFormat('ru-RU', options).format(value).replace(/\s/g, ' ');
+}
+
 function formatPercent(value) {
-  return `${value.toFixed(2)}%`;
+  return `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
 }
 
 function formatMoney(value) {
-  return `${value.toFixed(2)} ₽`;
+  return `${formatNumber(value, { maximumFractionDigits: 2 })} ₽`;
 }
 
 function safeDivide(numerator, denominator) {
@@ -56,6 +60,11 @@ function showEmptyResult() {
   outputs.cpc.textContent = '—';
   outputs.conversion.textContent = '—';
   outputs.cpl.textContent = '—';
+}
+
+function clearMessage() {
+  message.textContent = '';
+  message.className = 'message';
 }
 
 function calculateMetrics({ adSpend, impressions, clicks, leads }) {
@@ -105,4 +114,16 @@ form.addEventListener('submit', (event) => {
   outputs.conversion.textContent = results.conversion;
   outputs.cpl.textContent = results.cpl;
   showMessage('Расчет выполнен.', 'success');
+});
+
+form.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && event.target.matches('input')) {
+    event.preventDefault();
+    form.requestSubmit();
+  }
+});
+
+form.addEventListener('reset', () => {
+  showEmptyResult();
+  clearMessage();
 });
