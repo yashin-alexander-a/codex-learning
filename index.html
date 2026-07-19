@@ -16,43 +16,51 @@
       </p>
 
       <form id="calculator-form" novalidate>
-        <div class="form-grid">
-          <label class="field" for="ad-spend">
-            <span>Рекламный расход</span>
-            <input id="ad-spend" name="adSpend" type="number" min="0" step="0.01" placeholder="Например, 15000" aria-describedby="ad-spend-hint">
-            <small id="ad-spend-hint" class="field-hint">Укажите общий бюджет кампании в рублях.</small>
-          </label>
+        <section class="form-section" aria-labelledby="campaign-fields-title">
+          <h2 id="campaign-fields-title">Основные показатели кампании</h2>
+          <div class="form-grid">
+            <label class="field" for="ad-spend">
+              <span>Рекламный расход</span>
+              <input id="ad-spend" name="adSpend" type="number" min="0" step="0.01" placeholder="Например, 15000" aria-describedby="ad-spend-hint">
+              <small id="ad-spend-hint" class="field-hint">Укажите общий бюджет кампании в рублях.</small>
+            </label>
 
-          <label class="field" for="revenue">
-            <span>Выручка от рекламы</span>
-            <input id="revenue" name="revenue" type="number" min="0" step="0.01" placeholder="Например, 120000" aria-describedby="revenue-hint">
-            <small id="revenue-hint" class="field-hint">Общая выручка от продаж, полученных благодаря рекламе.</small>
-          </label>
+            <label class="field" for="impressions">
+              <span>Количество показов</span>
+              <input id="impressions" name="impressions" type="number" min="0" step="1" placeholder="Например, 50000" aria-describedby="impressions-hint">
+              <small id="impressions-hint" class="field-hint">Сколько раз объявление было показано аудитории.</small>
+            </label>
 
-          <label class="field" for="other-costs">
-            <span>Прочие затраты</span>
-            <input id="other-costs" name="otherCosts" type="number" min="0" step="0.01" placeholder="Например, 30000" aria-describedby="other-costs-hint">
-            <small id="other-costs-hint" class="field-hint">Себестоимость, комиссии, доставка и другие затраты без учета рекламного бюджета.</small>
-          </label>
+            <label class="field" for="clicks">
+              <span>Количество кликов</span>
+              <input id="clicks" name="clicks" type="number" min="0" step="1" placeholder="Например, 1200" aria-describedby="clicks-hint">
+              <small id="clicks-hint" class="field-hint">Сколько переходов получило объявление.</small>
+            </label>
 
-          <label class="field" for="impressions">
-            <span>Количество показов</span>
-            <input id="impressions" name="impressions" type="number" min="0" step="1" placeholder="Например, 50000" aria-describedby="impressions-hint">
-            <small id="impressions-hint" class="field-hint">Сколько раз объявление было показано аудитории.</small>
-          </label>
+            <label class="field" for="leads">
+              <span>Количество заявок</span>
+              <input id="leads" name="leads" type="number" min="0" step="1" placeholder="Например, 80" aria-describedby="leads-hint">
+              <small id="leads-hint" class="field-hint">Сколько заявок пришло после кликов.</small>
+            </label>
+          </div>
+        </section>
 
-          <label class="field" for="clicks">
-            <span>Количество кликов</span>
-            <input id="clicks" name="clicks" type="number" min="0" step="1" placeholder="Например, 1200" aria-describedby="clicks-hint">
-            <small id="clicks-hint" class="field-hint">Сколько переходов получило объявление.</small>
-          </label>
+        <section class="form-section financial-section" aria-labelledby="financial-fields-title">
+          <h2 id="financial-fields-title">Дополнительные финансовые данные</h2>
+          <div class="form-grid">
+            <label class="field" for="revenue">
+              <span>Выручка от рекламы</span>
+              <input id="revenue" name="revenue" type="number" min="0" step="0.01" placeholder="Необязательно" aria-describedby="revenue-hint">
+              <small id="revenue-hint" class="field-hint">Общая выручка от продаж, полученных благодаря рекламе.</small>
+            </label>
 
-          <label class="field" for="leads">
-            <span>Количество заявок</span>
-            <input id="leads" name="leads" type="number" min="0" step="1" placeholder="Например, 80" aria-describedby="leads-hint">
-            <small id="leads-hint" class="field-hint">Сколько заявок пришло после кликов.</small>
-          </label>
-        </div>
+            <label class="field" for="other-costs">
+              <span>Прочие затраты</span>
+              <input id="other-costs" name="otherCosts" type="number" min="0" step="0.01" placeholder="Необязательно" aria-describedby="other-costs-hint">
+              <small id="other-costs-hint" class="field-hint">Себестоимость, комиссии, доставка и другие затраты без учета рекламного бюджета.</small>
+            </label>
+          </div>
+        </section>
 
         <div class="actions">
           <button type="submit">Рассчитать</button>
@@ -99,6 +107,45 @@
           <small>Показывает окупаемость всех учтенных вложений</small>
         </article>
       </section>
+    </section>
+
+    <section class="card targets-card" aria-labelledby="targets-title">
+      <h2 id="targets-title">Целевые ориентиры</h2>
+      <p class="targets-description">
+        Укажите ваши плановые показатели, чтобы в дальнейшем сравнивать фактические результаты с целевыми.
+      </p>
+
+      <div class="form-grid targets-grid">
+        <label class="field" for="target-ctr">
+          <span>Целевой CTR, %</span>
+          <input id="target-ctr" name="targetCtr" type="number" min="0" step="0.01" placeholder="Например, 4">
+        </label>
+
+        <label class="field" for="target-cpc">
+          <span>Целевой CPC, ₽</span>
+          <input id="target-cpc" name="targetCpc" type="number" min="0" step="0.01" placeholder="Например, 8">
+        </label>
+
+        <label class="field" for="target-conversion">
+          <span>Целевая конверсия, %</span>
+          <input id="target-conversion" name="targetConversion" type="number" min="0" step="0.01" placeholder="Например, 5">
+        </label>
+
+        <label class="field" for="target-cpl">
+          <span>Целевой CPL, ₽</span>
+          <input id="target-cpl" name="targetCpl" type="number" min="0" step="0.01" placeholder="Например, 150">
+        </label>
+
+        <label class="field" for="target-romi">
+          <span>Целевой ROMI, %</span>
+          <input id="target-romi" name="targetRomi" type="number" min="0" step="0.01" placeholder="Например, 100">
+        </label>
+
+        <label class="field" for="target-roi">
+          <span>Целевой ROI, %</span>
+          <input id="target-roi" name="targetRoi" type="number" min="0" step="0.01" placeholder="Например, 40">
+        </label>
+      </div>
     </section>
   </main>
 
