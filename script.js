@@ -70,6 +70,18 @@ function clearMessage() {
   message.className = 'message';
 }
 
+function validateMetrics({ impressions, clicks, leads }) {
+  if (clicks > impressions) {
+    return 'Количество кликов не может быть больше количества показов';
+  }
+
+  if (leads > clicks) {
+    return 'Количество заявок не может быть больше количества кликов';
+  }
+
+  return null;
+}
+
 function calculateMetrics({ adSpend, revenue, otherCosts, impressions, clicks, leads }) {
   const ctr = safeDivide(clicks, impressions);
   const cpc = safeDivide(adSpend, clicks);
@@ -117,14 +129,23 @@ form.addEventListener('submit', (event) => {
     return;
   }
 
-  const results = calculateMetrics({
+  const values = {
     adSpend: adSpend.value,
     revenue: revenue.value,
     otherCosts: otherCosts.value,
     impressions: impressions.value,
     clicks: clicks.value,
     leads: leads.value,
-  });
+  };
+  const validationError = validateMetrics(values);
+
+  if (validationError) {
+    showEmptyResult();
+    showMessage(validationError);
+    return;
+  }
+
+  const results = calculateMetrics(values);
 
   showResults(results);
   showMessage('Расчет выполнен.', 'success');
